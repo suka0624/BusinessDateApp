@@ -17,7 +17,7 @@ import com.suka.springboot.service.BusinessDateService;
 @Controller
 public class BusinessDateController {
 
-	/** 業務日付計算サービス **/
+	/** 業務日付関連サービス **/
 	@Autowired
 	private BusinessDateService service;
 	
