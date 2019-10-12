@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title th:text="業務日付管理"></title>
+</head>
+
+<body>
+	<h1 th:text="#{content.title}"></h1>
+	
+	<h2>業務日付一覧</h2>
+	<form name="formList">
+		<table>
+			<tr><th>ID</th><th>名前</th><th>計算式</th><th>計算</th><th>計算結果</th><th>編集</th><th>削除</th></tr>
+			<tr th:each="obj : ${datalist}">
+				<td th:text="${obj.id}"></td>
+				<td th:text="${obj.name}"></td>
+				<td th:text="${obj.year}" ></td>
+				<td><input type="button" value="計算" /></td>
+				<td></td>
+				<td><a th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
+				<td><a th:href="@{/delete/{id}(id=${obj.id})}">削除</a></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
