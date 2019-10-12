@@ -33,7 +33,7 @@
 			<tr th:each="obj : ${datalist}">
 				<td th:text="${obj.id}"></td>
 				<td th:text="${obj.name}"></td>
-				<td th:text="${obj.year}" ></td>
+				<td th:text="|${obj.year}/${obj.month}/${obj.day}|" ></td>
 				<td><input type="button" value="計算" /></td>
 				<td></td>
 				<td><a th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
