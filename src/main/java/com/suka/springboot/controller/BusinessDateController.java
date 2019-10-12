@@ -1,8 +1,11 @@
 package com.suka.springboot.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -46,5 +49,14 @@ public class BusinessDateController {
 	public ModelAndView register(@ModelAttribute("formModel") BusinessDate businessDate) {
 		service.register(businessDate);
 		return new ModelAndView("redirect:/");
+	}
+	
+	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+	public ModelAndView edit(@ModelAttribute BusinessDate businessDate,
+			@PathVariable int id, ModelAndView mav) {
+		mav.setViewName("edit");
+		Optional<BusinessDate> data = service.searchById(id);
+		mav.addObject("formModel", data.get());
+		return mav;
 	}
 }

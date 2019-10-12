@@ -1,6 +1,7 @@
 package com.suka.springboot.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,10 +26,20 @@ public interface BusinessDateRepository {
 	List<BusinessDate> selectAll();
 	
 	/**
+	 * 指定の業務日付計算式取得
+	 * @param id 業務日付計算式のシーケンスID
+	 * @return 業務日付計算式
+	 */
+	@Select("SELECT * FROM business_date WHERE id = #{id}")
+	Optional<BusinessDate> selectById(int id);
+	
+	/**
 	 * 業務日付計算式の登録
 	 * 
 	 * @param businessDate 業務日付計算式
 	 */
 	@Insert("INSERT INTO business_date (`name`, `year`, `month`, `day`) VALUES (#{name}, #{year}, #{month}, #{day})")
 	void insert(BusinessDate businessDate);
+	
+	
 }

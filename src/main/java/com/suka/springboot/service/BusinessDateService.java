@@ -1,6 +1,7 @@
 package com.suka.springboot.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,6 +29,16 @@ public class BusinessDateService {
 	 */
 	public List<BusinessDate> searchAll() {
 		return repository.selectAll();
+	}
+	
+	/**
+	 * 業務日付計算用情報を取得する
+	 * 
+	 * @param id 業務日付計算用情報シーケンスID
+	 * @return 業務日付計算用情報
+	 */
+	public Optional<BusinessDate> searchById(int id) {
+		return repository.selectById(id);
 	}
 	
 	/**
