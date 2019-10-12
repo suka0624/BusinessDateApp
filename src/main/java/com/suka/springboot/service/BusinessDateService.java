@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.suka.springboot.domain.BusinessDate;
 import com.suka.springboot.repository.BusinessDateRepository;
@@ -20,8 +21,22 @@ public class BusinessDateService {
 	@Autowired
 	private BusinessDateRepository repository;
 	
-	/** 業務日付計算式の全件取得 **/
+	/**
+	 * 業務日付計算用情報を全件取得する
+	 * 
+	 * @return 業務日付計算用情報一覧
+	 */
 	public List<BusinessDate> searchAll() {
 		return repository.selectAll();
+	}
+	
+	/**
+	 * 業務日付計算用情報を登録する
+	 * 
+	 * @param businessDate 業務日付計算用情報
+	 */
+	@Transactional(readOnly = false)
+	public void register(BusinessDate businessDate) {
+		repository.insert(businessDate);
 	}
 }
