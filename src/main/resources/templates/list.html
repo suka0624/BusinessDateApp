@@ -15,11 +15,13 @@
 	<style>
 	body { font-size:13pt; margin:5px 25px }
 	h1 { font-size:18pt; font-weight:bold; color:white; background:black; padding:5px;}
-	h2 { font-size:16pt; font-weight:bold; padding:5px; width:300px}
-	h3 { font-size:14pt; font-weight:bold; }
+	h2 { font-size:16pt; font-weight:bold; margin:10px; padding:5px; width:300px}
+	h3 { font-size:14pt; font-weight:bold; margin:20px;}
+	table { margin:10px }
 	tr { margin:5px }
 	th { padding:5px; color:white; background:darkgray; }
 	td { padding:5px; color:black; background:#f0f0f0 }
+	.form { margin-left:25px }
 	</style>
 </head>
 
@@ -27,7 +29,7 @@
 	<h1 th:text="#{content.title}"></h1>
 
 	<h2>新規登録</h2>
-	<form method="post" action="/register" th:object="${formModel}">
+	<form method="post" action="/register" th:object="${formModel}" class="form">
 		<table>
 			<tr>
 				<th><label for="name">名前</label></th>
@@ -44,9 +46,21 @@
 			<tr><td></td><td><input type="submit" value="登録"/></td></tr>
 		</table>
 	</form>
+	<hr>
 
-	<h2>業務日付一覧</h2>
-	<form name="formList">
+	<h2>業務日付計算</h2>
+	<h3>基準日</h3>
+	<form name="formBase" class="form">
+		<table>
+			<tr>
+				<th>(YYYY/MM/DD形式) :</th>
+				<td><input type="text" name="base" /></td>
+			</tr>
+		</table>
+	</form>
+
+	<h3>一覧</h3>
+	<form name="formList" class="form">
 		<table>
 			<tr><th>ID</th><th>名前</th><th>計算式</th><th>計算</th><th>計算結果</th><th>編集</th><th>削除</th></tr>
 			<tr th:each="obj : ${datalist}">
