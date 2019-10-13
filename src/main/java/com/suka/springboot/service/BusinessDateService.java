@@ -50,4 +50,14 @@ public class BusinessDateService {
 	public void register(BusinessDate businessDate) {
 		repository.insert(businessDate);
 	}
+	
+	/**
+	 * 業務日付計算用情報を更新する
+	 * 
+	 * @param businessDate 業務日付計算用情報
+	 */
+	@Transactional(readOnly = false)
+	public void update(BusinessDate businessDate) {
+		repository.update(businessDate);
+	}
 }

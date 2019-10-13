@@ -51,6 +51,13 @@ public class BusinessDateController {
 		return new ModelAndView("redirect:/");
 	}
 	
+	/**
+	 * 業務日付計算用情報編集画面表示
+	 * @param businessDate 業務日付計算用情報
+	 * @param id 更新対象のID
+	 * @param mav ModelAndView
+	 * @return 編集画面ModelAndView
+	 */
 	@RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
 	public ModelAndView edit(@ModelAttribute BusinessDate businessDate,
 			@PathVariable int id, ModelAndView mav) {
@@ -58,5 +65,16 @@ public class BusinessDateController {
 		Optional<BusinessDate> data = service.searchById(id);
 		mav.addObject("formModel", data.get());
 		return mav;
+	}
+	
+	/**
+	 * 業務日付計算用情報更新
+	 * @param businessDate 業務日付計算用情報
+	 * @return 一覧画面(リダイレクト)ModelAndView
+	 */
+	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	public ModelAndView update(@ModelAttribute BusinessDate businessDate) {
+		service.update(businessDate);
+		return new ModelAndView("redirect:/");
 	}
 }

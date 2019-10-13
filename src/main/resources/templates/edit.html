@@ -27,9 +27,9 @@
 	<h1 th:text="#{content.title}"></h1>
 
 	<h2>業務日付計算式編集</h2>
-	<form method="post" action="/edit" th:object="${formModel}">
+	<form method="post" action="/update/*{id}" th:object="${formModel}">
+		<input type="hidden" name="id" th:value="*{id}" />
 		<table>
-			<input type="hidden" name="id" th:value="*{id}" />
 			<tr>
 				<th><label for="name">名前</label></th>
 				<th><label for="year">加減年</label></th>
