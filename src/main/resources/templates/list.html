@@ -4,13 +4,10 @@
 	<meta charset="UTF-8">
 	<title th:text="業務日付管理"></title>
 	
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
-	      th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"
-	        th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
-	        th:src="@{/webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/list.js" th:src="@{/js/list.js}"></script>
 	        
 	<style>
 	body { font-size:13pt; margin:5px 25px }
@@ -20,8 +17,9 @@
 	table { margin:10px }
 	tr { margin:5px }
 	th { padding:5px; color:white; background:darkgray; }
-	td { padding:5px; color:black; background:#f0f0f0 }
-	.form { margin-left:25px }
+	td { padding:5px; color:black; background:#f0f0f0; }
+	.form { margin-left:25px; }
+	hr { border: 1px black solid; }
 	</style>
 </head>
 
@@ -54,7 +52,7 @@
 		<table>
 			<tr>
 				<th>(YYYY/MM/DD形式) :</th>
-				<td><input type="text" name="base" /></td>
+				<td><input type="text" id="base" name="base" /></td>
 			</tr>
 		</table>
 	</form>
