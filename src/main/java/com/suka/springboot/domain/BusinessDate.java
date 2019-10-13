@@ -1,5 +1,7 @@
 package com.suka.springboot.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * 業務日付計算用
  * 
@@ -10,6 +12,7 @@ public class BusinessDate {
 	/** 業務日付計算式ID **/
     private Long id;
     /** 業務日付計算式名 **/
+    @NotEmpty
     private String name;
     /** 加減年 **/
     private int year;

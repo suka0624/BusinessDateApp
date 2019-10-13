@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +48,19 @@ public class BusinessDateController {
 	 * @return 一覧画面(リダイレクト)ModelAndView
 	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public ModelAndView register(@ModelAttribute("formModel") BusinessDate businessDate) {
+	public ModelAndView register(@ModelAttribute("formModel")
+		@Validated BusinessDate businessDate,
+		BindingResult result, ModelAndView mav) {
+		
+		/** バリデーションエラー発生時 **/
+		if (result.hasErrors()) {
+			mav.setViewName("list");
+			mav.addObject("errMsg", "Sorry, error is occured...");
+			Iterable<BusinessDate> list = service.searchAll();
+			mav.addObject("datalist", list);
+			return mav;
+		}
+		
 		service.register(businessDate);
 		return new ModelAndView("redirect:/");
 	}
