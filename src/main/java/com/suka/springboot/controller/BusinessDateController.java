@@ -72,9 +72,23 @@ public class BusinessDateController {
 	 * @param businessDate 業務日付計算用情報
 	 * @return 一覧画面(リダイレクト)ModelAndView
 	 */
-	@RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView update(@ModelAttribute BusinessDate businessDate) {
 		service.update(businessDate);
 		return new ModelAndView("redirect:/");
+	}
+	
+	/**
+	 * 業務日付計算用情報削除確認画面表示
+	 * @param id 削除対象のID
+	 * @param mav ModelAndView
+	 * @return 削除確認画面ModelAndView
+	 */
+	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+	public ModelAndView deleteConfirm(@PathVariable int id, ModelAndView mav) {
+		mav.setViewName("delete");
+		Optional<BusinessDate> data = service.searchById(id);
+		mav.addObject("formModel",data.get());
+		return mav;
 	}
 }

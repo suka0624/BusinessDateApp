@@ -26,27 +26,17 @@
 <body>
 	<h1 th:text="#{content.title}"></h1>
 
-	<h2>業務日付計算式編集</h2>
-	<form method="post" action="/update" th:object="${formModel}">
+	<h2>業務日付計算式削除</h2>
+	<form method="post" action="/delete" th:object="${formModel}">
 		<input type="hidden" name="id" th:value="*{id}" />
 		<table>
+			<tr><th>名前</th><th>計算式</th><th>削除</th></tr>
 			<tr>
-				<th><label for="name">名前</label></th>
-				<th><label for="year">加減年</label></th>
-				<th><label for="month">加減月</label></th>
-				<th><label for="day">加減日</label></th>
-			</tr>
-			<tr>
-				<td><input type="text" name="name" th:value="*{name}" /></td>
-				<td><input type="number" name="year" th:value="*{year}" min="-100" max="100" /></td>
-				<td><input type="number" name="month" th:value="*{month}" min="-12" max="12" /></td>
-				<td><input type="number" name="day" th:value="*{day}" min="-365" max="365" /></td>
-			</tr>
-			<tr>
-				<td></td><td></td><td></td><td><input type="submit" value="更新" /></td>
+				<td><p th:text="*{name}"></p></td>
+				<td><p th:text="|*{year}/*{month}/*{day	}|"></p></td>
+				<td><input type="submit" value="削除" /></td>
 			</tr>
 		</table>
-		<a th:href="@{/}">戻る</a>
 	</form>
 </body>
 </html>
