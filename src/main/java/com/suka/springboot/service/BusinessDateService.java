@@ -60,4 +60,14 @@ public class BusinessDateService {
 	public void update(BusinessDate businessDate) {
 		repository.update(businessDate);
 	}
+	
+	/**
+	 * 業務日付計算用情報を削除する
+	 * 
+	 * @param businessDate 業務日付計算用情報
+	 */
+	@Transactional(readOnly = false)
+	public void delete(BusinessDate businessDate) {
+		repository.delete(businessDate);
+	}
 }

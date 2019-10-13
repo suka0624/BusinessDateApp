@@ -3,6 +3,7 @@ package com.suka.springboot.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -49,4 +50,12 @@ public interface BusinessDateRepository {
 	 */
 	@Update("UPDATE business_date SET name = #{name}, year = #{year}, month = #{month}, day = #{day} WHERE id = #{id}")
 	void update(BusinessDate businessDate);
+	
+	/**
+	 * 業務日付計算式の削除
+	 * 
+	 * @param businessDate 業務日付計算式
+	 */
+	@Delete("DELETE FROM business_date WHERE id = #{id}")
+	void delete(BusinessDate businessDate);
 }

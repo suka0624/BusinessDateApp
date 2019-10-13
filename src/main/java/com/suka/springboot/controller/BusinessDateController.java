@@ -91,4 +91,16 @@ public class BusinessDateController {
 		mav.addObject("formModel",data.get());
 		return mav;
 	}
+	
+	/**
+	 * 業務日付計算用情報削除
+	 * 
+	 * @param businessDate 業務日付計算用情報
+	 * @return 一覧画面(リダイレクト)ModelAndView
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	public ModelAndView delete(@ModelAttribute BusinessDate businessDate) {
+		service.delete(businessDate);
+		return new ModelAndView("redirect:/");		
+	}
 }
