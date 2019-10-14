@@ -1,6 +1,9 @@
 package com.suka.springboot.domain;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 /**
  * 業務日付計算用
@@ -12,13 +15,21 @@ public class BusinessDate {
 	/** 業務日付計算式ID **/
     private Long id;
     /** 業務日付計算式名 **/
-    @NotEmpty
     private String name;
     /** 加減年 **/
+    @NotNull
+    @Min(-100)
+    @Max(100)
     private int year;
     /** 加減月 **/
+    @NotNull
+    @Min(-12)
+    @Max(12)
     private int month;
     /** 加減日 **/
+    @NotNull
+    @Min(-365)
+    @Max(365)
     private int day;
  
     /**
