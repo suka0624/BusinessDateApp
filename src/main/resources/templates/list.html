@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="業務日付管理"></title>
+	<title th:text="#{content.title}"></title>
 	
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	
@@ -11,14 +11,16 @@
 	        
 	<style>
 	body { font-size:13pt; margin:5px 25px }
-	h1 { font-size:18pt; font-weight:bold; color:white; background:black; padding:5px;}
+	h1 { font-size:18pt; font-weight:bold; color:white; background:#3F51B5; padding:10px;}
 	h2 { font-size:16pt; font-weight:bold; margin:10px; padding:5px; width:300px}
 	h3 { font-size:14pt; font-weight:bold; margin:20px;}
-	table { margin:10px }
+	table { margin:10px; border-collapse: separate; border-spacing:  5px;}
 	tr { margin:5px }
-	th { padding:5px; color:white; background:darkgray; }
-	td { padding:5px; color:black; background:#f0f0f0; }
+	th,td { padding: 5px 10px; }
+	th { padding:5px; color:#fff; background-color: #3F51B5; font-weight: normal;}
+	td { padding:5px; background-color:  #c0c9ff; }
 	.form { margin-left:25px; }
+	#err { margin-left:25px; font-size:12pt; color:red }
 	hr { border: 1px black solid; }
 	</style>
 </head>
@@ -27,6 +29,7 @@
 	<h1 th:text="#{content.title}"></h1>
 
 	<h2>新規登録</h2>
+	<p th:text="${errMsg}" id="err"></p>
 	<form method="post" action="/register" th:object="${formModel}" class="form">
 		<table>
 			<tr>
@@ -41,7 +44,7 @@
 				<td><input type="number" name="month" th:value="*{month}" min="-12" max="12" /></td>
 				<td><input type="number" name="day" th:value="*{day}" min="-365" max="365" /></td>
 			</tr>
-			<tr><td></td><td><input type="submit" value="登録"/></td></tr>
+			<tr><td colspan="3"></td><td><input type="submit" value="登録"/></td></tr>
 		</table>
 	</form>
 	<hr>
