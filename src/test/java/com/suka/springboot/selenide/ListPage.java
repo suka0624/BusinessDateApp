@@ -49,6 +49,26 @@ public class ListPage {
     }
     
     /**
+     * 指定したIDの名前を取得する
+     * @param id 業務日付計算式のID
+     * @return 業務日付計算式名
+     */
+    public static String 名前(int id) {
+    	String listNameId = "name" + String.valueOf(id);
+    	return Selenide.$(By.id(listNameId)).getText();
+    }
+    
+    /**
+     * 指定したIDの計算式を取得する
+     * @param id 業務日付計算式のID
+     * @return 業務日付計算式
+     */
+    public static String 計算式(int id) {
+    	String listFormulaId = "formula" + String.valueOf(id);
+    	return Selenide.$(By.id(listFormulaId)).getText();
+    }
+    
+    /**
      * 登録用に業務日付名を設定する
      * 
      * @param name 業務日付名
@@ -111,5 +131,25 @@ public class ListPage {
     public static String 計算結果(int id) {
     	String resultId = "result" + String.valueOf(id);
     	return Selenide.$(By.id(resultId)).getText();
+    }
+    
+    /**
+     * 指定したIDの編集画面に遷移する
+     * 
+     * @param id 業務日付計算式ID
+     */
+    public static void 編集画面に遷移(int id) {
+    	String editBtnId = "edit" + String.valueOf(id);
+    	Selenide.$(By.id(editBtnId)).click();
+    }
+    
+    /**
+     * 指定したIDの削除確認画面に遷移する
+     * 
+     * @param id 業務日付計算式ID
+     */
+    public static void 削除確認画面に遷移(int id) {
+    	String deleteBtnId = "delete" + String.valueOf(id);
+    	Selenide.$(By.id(deleteBtnId)).click();
     }
 }

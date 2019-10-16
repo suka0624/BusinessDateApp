@@ -49,6 +49,7 @@ public class BusinessDateSelenideTest {
     
     /**
      * 一覧画面の表示内容を確認する
+     * 
      * @throws Exception
      */
     @Test
@@ -65,6 +66,7 @@ public class BusinessDateSelenideTest {
     
     /**
      * 業務日付用計算式を新規登録する
+     * 
      * @throws Exception
      */
     @Test
@@ -83,9 +85,18 @@ public class BusinessDateSelenideTest {
     	ListPage.で登録する();
     	
     	/** 登録後の件数確認 **/
-    	assertThat(ListPage.登録件数()).isEqualTo(4);    	
+    	assertThat(ListPage.登録件数()).isEqualTo(4);  
+    	
+    	/** 登録内容の確認 **/
+    	assertThat(ListPage.名前(4)).isEqualTo("3ヶ月後");
+    	assertThat(ListPage.計算式(4)).isEqualTo("0/3/0");
     }
     
+    /**
+     * 業務日付を計算する
+     * 
+     * @throws Exception
+     */
     @Test
     public void 業務日付を計算する() throws Exception {
     	
@@ -98,7 +109,26 @@ public class BusinessDateSelenideTest {
     	/** 計算結果を確認する **/
     	int id = ListPage.登録件数();
     	assertThat(ListPage.計算結果(id)).isEqualTo("2019/10/09");
+    }
+    
+    @Test
+    public void 業務日付計算式を更新する() throws Exception {
     	
+    	ListPage.一覧画面を表示();
+    	
+    	/** 業務日付計算式の編集画面に遷移 **/
+    	ListPage.編集画面に遷移(1);		// ID:1を指定
+    	
+    	/** 業務日付計算式を編集する **/
+    	EditPage.業務日付名は("1年1ヶ月1日後");
+    	EditPage.加減年は("1");
+    	EditPage.加減月は("1");
+    	EditPage.加減日は("1");
+    	EditPage.で更新する();
+    	
+    	/** 一覧画面に戻るので、更新内容を確認する **/
+    	assertThat(ListPage.名前(1)).isEqualTo("1年1ヶ月1日後");
+    	assertThat(ListPage.計算式(1)).isEqualTo("1/1/1");    	
     }
     
     /**
