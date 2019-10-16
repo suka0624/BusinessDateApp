@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="#{content.title}"></title>
+	<title th:text="#{content.title}">業務日付管理</title>
 	
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	
@@ -36,7 +36,7 @@
 			<tr>
 				<td><p th:text="*{name}"></p></td>
 				<td><p th:text="|*{year}/*{month}/*{day	}|"></p></td>
-				<td><input type="submit" value="削除" /></td>
+				<td><input type="submit" id="deleteBtn" value="削除" /></td>
 			</tr>
 		</table>
 		<a th:href="@{/}">戻る</a>

@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 	<meta charset="UTF-8">
-	<title th:text="#{content.title}"></title>
+	<title th:text="#{content.title}">業務日付管理</title>
 	
 	<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 	
@@ -30,7 +30,7 @@
 
 	<h2>新規登録</h2>
 	<p th:text="${errMsg}" id="err"></p>
-	<form method="post" action="/register" th:object="${formModel}" class="form">
+	<form method="post" action="/register" th:object="${formModel}" id="formEntry" class="form">
 		<table>
 			<tr>
 				<th><label for="name">名前</label></th>
@@ -39,12 +39,12 @@
 				<th><label for="day">加減日</label></th>
 			</tr>
 			<tr>
-				<td><input type="text" name="name" th:value="*{name}" /></td>
-				<td><input type="number" name="year" th:value="*{year}" min="-100" max="100" /></td>
-				<td><input type="number" name="month" th:value="*{month}" min="-12" max="12" /></td>
-				<td><input type="number" name="day" th:value="*{day}" min="-365" max="365" /></td>
+				<td><input type="text" id="entryName" name="name" th:value="*{name}" /></td>
+				<td><input type="number" id="entryYear" name="year" th:value="*{year}" min="-100" max="100" /></td>
+				<td><input type="number" id="entryMonth" name="month" th:value="*{month}" min="-12" max="12" /></td>
+				<td><input type="number" id="entryDay" name="day" th:value="*{day}" min="-365" max="365" /></td>
 			</tr>
-			<tr><td colspan="3"></td><td><input type="submit" value="登録"/></td></tr>
+			<tr><td colspan="3"></td><td><input type="submit" id="entryBtn" value="登録"/></td></tr>
 		</table>
 	</form>
 	<hr>
@@ -61,17 +61,17 @@
 	</form>
 
 	<h3>一覧</h3>
-	<form name="formList" class="form">
+	<form name="formList" id="formList" class="form">
 		<table>
 			<tr><th>ID</th><th>名前</th><th>計算式</th><th>計算</th><th>計算結果</th><th>編集</th><th>削除</th></tr>
 			<tr th:each="obj : ${datalist}">
 				<td th:text="${obj.id}"></td>
-				<td th:text="${obj.name}"></td>
-				<td th:text="|${obj.year}/${obj.month}/${obj.day}|" ></td>
-				<td><input type="button" value="計算" onclick="calc(this)" /></td>
-				<td></td>
-				<td><a th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
-				<td><a th:href="@{/delete/{id}(id=${obj.id})}">削除</a></td>
+				<td th:id="|name${obj.id}|" th:text="${obj.name}"></td>
+				<td th:id="|formula${obj.id}|" th:text="|${obj.year}/${obj.month}/${obj.day}|" ></td>
+				<td><input type="button" th:id="|list${obj.id}|" value="計算" onclick="calc(this)" /></td>
+				<td th:id="|result${obj.id}|"></td>
+				<td><a th:id="|edit${obj.id}|" th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
+				<td><a th:id="|delete${obj.id}|" th:href="@{/delete/{id}(id=${obj.id})}">削除</a></td>
 			</tr>
 		</table>
 	</form>
