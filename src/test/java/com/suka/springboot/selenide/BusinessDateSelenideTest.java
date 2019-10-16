@@ -47,13 +47,31 @@ public class BusinessDateSelenideTest {
         WebDriverRunner.closeWebDriver();
     }
     
+    @Test
+    public void UIシナリオ試験() throws Exception {
+    	
+    	/** 一覧画面の表示内容を確認 **/
+    	一覧画面表示時のUI確認();
+    	
+    	/** 業務日付用計算式を新規登録 **/
+    	業務日付用計算式を新規に登録する();
+    	
+    	/** 業務日付計算 **/
+    	業務日付を計算する();
+    	
+    	/** 業務日付更新 **/
+    	業務日付計算式を更新する();
+    	
+    	/** 業務日付削除 **/
+    	業務日付計算式を削除する();
+    }
+    
     /**
      * 一覧画面の表示内容を確認する
      * 
      * @throws Exception
      */
-    @Test
-    public void 一覧画面表示時のUI確認() throws Exception {
+    private void 一覧画面表示時のUI確認() throws Exception {
     	
     	ListPage.一覧画面を表示();
     	
@@ -69,8 +87,7 @@ public class BusinessDateSelenideTest {
      * 
      * @throws Exception
      */
-    @Test
-    public void 業務日付用計算式を新規に登録する() throws Exception {
+    private void 業務日付用計算式を新規に登録する() throws Exception {
     	
     	ListPage.一覧画面を表示();
     	
@@ -97,22 +114,25 @@ public class BusinessDateSelenideTest {
      * 
      * @throws Exception
      */
-    @Test
-    public void 業務日付を計算する() throws Exception {
+    private void 業務日付を計算する() throws Exception {
     	
     	ListPage.一覧画面を表示();
     	
-    	/** IDのもっとも大きいデータ(1日前)を用いて、業務日付を計算する **/
+    	/** IDのもっとも大きいデータ(3ヶ月後)を用いて、業務日付を計算する **/
     	ListPage.基準日は("2019/10/10");
-    	ListPage.でIDのもっとも大きいデータ_1日前_の業務日付を計算する();
+    	ListPage.でIDのもっとも大きいデータの業務日付を計算する();
     	
     	/** 計算結果を確認する **/
     	int id = ListPage.登録件数();
-    	assertThat(ListPage.計算結果(id)).isEqualTo("2019/10/09");
+    	assertThat(ListPage.計算結果(id)).isEqualTo("2020/01/10");
     }
     
-    @Test
-    public void 業務日付計算式を更新する() throws Exception {
+    /**
+     * 業務日付計算式を更新する
+     * 
+     * @throws Exception
+     */
+    private void 業務日付計算式を更新する() throws Exception {
     	
     	ListPage.一覧画面を表示();
     	
@@ -129,6 +149,22 @@ public class BusinessDateSelenideTest {
     	/** 一覧画面に戻るので、更新内容を確認する **/
     	assertThat(ListPage.名前(1)).isEqualTo("1年1ヶ月1日後");
     	assertThat(ListPage.計算式(1)).isEqualTo("1/1/1");    	
+    }
+    
+    /**
+     * 業務日付計算式を削除する
+     * 
+     * @throws Exception
+     */
+    private void 業務日付計算式を削除する() throws Exception {
+    	
+    	ListPage.一覧画面を表示();
+
+    	/** 業務日付計算式の削除確認画面に遷移 **/
+    	ListPage.削除確認画面に遷移(1);		// ID:1を指定
+    	
+    	/** 削除する **/
+    	DeletePage.削除();
     }
     
     /**

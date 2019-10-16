@@ -122,7 +122,7 @@ public class ListPage {
     /**
      * IDのもっとも大きいデータを基準日を元に業務日付を計算する
      */
-    public static void でIDのもっとも大きいデータ_1日前_の業務日付を計算する() {
+    public static void でIDのもっとも大きいデータの業務日付を計算する() {
     	int listSize = 登録件数();
     	String listId = "list" + String.valueOf(listSize);
     	Selenide.$(By.id(listId)).click();
