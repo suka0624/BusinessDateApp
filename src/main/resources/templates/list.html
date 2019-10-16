@@ -33,16 +33,16 @@
 	<form method="post" action="/register" th:object="${formModel}" id="formEntry" class="form">
 		<table>
 			<tr>
-				<th><label for="entryName">名前</label></th>
-				<th><label for="entryYear">加減年</label></th>
-				<th><label for="entryMonth">加減月</label></th>
-				<th><label for="entryDay">加減日</label></th>
+				<th><label for="name">名前</label></th>
+				<th><label for="year">加減年</label></th>
+				<th><label for="month">加減月</label></th>
+				<th><label for="day">加減日</label></th>
 			</tr>
 			<tr>
-				<td><input type="text" name="entryName" th:value="*{name}" /></td>
-				<td><input type="number" name="entryYear" th:value="*{year}" min="-100" max="100" /></td>
-				<td><input type="number" name="entryMonth" th:value="*{month}" min="-12" max="12" /></td>
-				<td><input type="number" name="entryDay" th:value="*{day}" min="-365" max="365" /></td>
+				<td><input type="text" id="entryName" name="name" th:value="*{name}" /></td>
+				<td><input type="number" id="entryYear" name="year" th:value="*{year}" min="-100" max="100" /></td>
+				<td><input type="number" id="entryMonth" name="month" th:value="*{month}" min="-12" max="12" /></td>
+				<td><input type="number" id="entryDay" name="days" th:value="*{day}" min="-365" max="365" /></td>
 			</tr>
 			<tr><td colspan="3"></td><td><input type="submit" id="entryBtn" value="登録"/></td></tr>
 		</table>
@@ -68,8 +68,8 @@
 				<td th:text="${obj.id}"></td>
 				<td th:text="${obj.name}"></td>
 				<td th:text="|${obj.year}/${obj.month}/${obj.day}|" ></td>
-				<td><input type="button" value="計算" onclick="calc(this)" /></td>
-				<td></td>
+				<td><input type="button" th:id="|list${obj.id}|" value="計算" onclick="calc(this)" /></td>
+				<td th:id="|result${obj.id}|"></td>
 				<td><a th:href="@{/edit/{id}(id=${obj.id})}">編集</a></td>
 				<td><a th:href="@{/delete/{id}(id=${obj.id})}">削除</a></td>
 			</tr>
