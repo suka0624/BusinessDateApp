@@ -81,6 +81,14 @@ public class BusinessDateRepositoryTest {
 		
 		assertThat(list.size()).isEqualTo(2);
 	}
+
+	@Test
+	public void NULLで登録しようとするとDataIntegrityViolationExceptionとなる事() throws Exception {
+
+		assertThatThrownBy(() -> {
+			businessDateRepository.insert(null);
+		}).isInstanceOf(DataIntegrityViolationException.class);
+	}
 	
 	private BusinessDate createBusinessDate(long id, String name, int year, int month, int day) {
 		BusinessDate businessDate = new BusinessDate();
