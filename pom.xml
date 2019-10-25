@@ -10,6 +10,7 @@
 	</parent>
 	<groupId>com.suka.springboot</groupId>
 	<artifactId>BusinessDateApp</artifactId>
+	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>BusinessDateApp</name>
 	<description>App for Business Date Management</description>
@@ -79,9 +80,21 @@
 			<artifactId>selenide</artifactId>
 			<version>5.1.0</version>
 		</dependency>
+		
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-tomcat</artifactId>
+      <scope>provided</scope>
+    </dependency>
 	</dependencies>
 
 	<build>
+		<finalName>BusinessDateApp</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
