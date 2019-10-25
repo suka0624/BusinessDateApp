@@ -29,7 +29,7 @@
 	<h1 th:text="#{content.title}"></h1>
 
 	<h2>業務日付計算式編集</h2>
-	<form method="post" action="/update" th:object="${formModel}">
+	<form method="post" th:action="@{/update}" th:object="${formModel}">
 		<input type="hidden" name="id" th:value="*{id}" />
 		<table>
 			<tr>
